@@ -1,4 +1,4 @@
-package practice.p12939;
+package practice.level2.p12939;
 
 import java.util.Arrays;
 
