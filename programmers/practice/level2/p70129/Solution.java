@@ -1,23 +1,20 @@
 package practice.level2.p70129;
 
 public class Solution {
-    public String solution(String s) {
-        s = s.toLowerCase();
-        int blankIdx = s.indexOf(" ");
+    public int[] solution(String s) {
+        int transCnt = 0;
+        int deleteCnt = 0;
 
-        StringBuilder sb = new StringBuilder(s);
-
-        if (!Character.isDigit(sb.charAt(0))) {
-            sb.setCharAt(0, Character.toUpperCase(sb.charAt(0)));
+        while (s.length() > 1) {
+            int deleteLength = s.replace("1", "").length();
+            s.replace("0", "");
+            s = Integer.toBinaryString(s.length() - deleteLength);
+            deleteCnt += deleteLength;
+            transCnt++;
         }
 
-        while (blankIdx >= 0) {
-            if (blankIdx != sb.length() - 1 && !Character.isDigit(sb.charAt(blankIdx + 1))) {
-                sb.setCharAt(blankIdx + 1, Character.toUpperCase(sb.charAt(blankIdx + 1)));
-            }
-            blankIdx = s.indexOf(" ", blankIdx + 1);
-        }
+        int[] answer = {transCnt, deleteCnt};
 
-        return sb.toString();
+        return answer;
     }
 }
